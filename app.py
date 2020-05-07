@@ -70,7 +70,8 @@ def create_app(test_config=None):
     # This route uses the Authlib client instance to redirect the user to the login page.
     @app.route('/login')
     def login():
-        return auth0.authorize_redirect(redirect_uri='http://localhost:5000/callback')
+        uri = os.getenv("AUTH0_CALLBACK_URL")
+        return auth0.authorize_redirect(redirect_uri=uri)
 
     # Decorator that checks if the user has authenticated.
     def requires_auth(f):
