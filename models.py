@@ -1,8 +1,9 @@
 import os
+import json
 from sqlalchemy import Column, String, Integer, Float, DateTime, ARRAY, JSON, create_engine
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import json
+from flask_migrate import Migrate
 
 from forms import *
 
@@ -15,19 +16,12 @@ setup_db(app)
     Binds a flask application and a SQLAlchemy service.
 '''
 def setup_db(app, database_path = database_path):
+    migrate = Migrate(app, db)
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-
-'''
-Drop the database tables and start fresh
-Initialize a clean database
-'''
-def db_drop_and_create_all():
-    db.drop_all()
-    db.create_all()
-
+    return db
 
 '''
 restaurants
@@ -206,7 +200,7 @@ class Review(db.Model):
                 restaurant_id = 1,
                 name = "Morgan",
                 rating = 4,
-                comments = "This place is a blast.")
+                comments = "This place is a blast!.")
             my_review.insert()
     '''
     def insert(self):
