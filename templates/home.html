@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login - New York Diner</title>
+  <meta name="description" content="Login to New York Diner's catalogue of restaurants.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Normalize.css for better cross-browser consistency -->
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+  <div class="login-wrapper">
+    <div class="login-prompt">
+        <img src="{{ url_for('static', filename='img/icon-192x192.png') }}" />
+        <h3>New York Diner</h3>
+        <p>Please <a href="/login">log in</a> to access the catalogue.</p>
+    </div>
+  </div>
+</body>
+
+</html>
