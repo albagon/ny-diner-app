@@ -292,14 +292,13 @@ def create_app(test_config=None):
                 if form.validate_on_submit():
                     op_hours = format_operating_hours(form)
                     if op_hours['success']:
-                        restaurant.name = form.name.data,
-                        restaurant.borough = form.borough.data,
-                        restaurant.photograph = form.photograph.data,
-                        restaurant.img_description = form.img_description.data,
-                        restaurant.address = form.address.data,
-                        restaurant.latlng[0] = float(form.lat.data),
-                        restaurant.latlng[1] = float(form.lng.data),
-                        restaurant.cuisine = form.cuisine.data,
+                        restaurant.name = form.name.data
+                        restaurant.borough = form.borough.data
+                        restaurant.photograph = form.photograph.data
+                        restaurant.img_description = form.img_description.data
+                        restaurant.address = form.address.data
+                        restaurant.latlng = [float(form.lat.data), float(form.lng.data)]
+                        restaurant.cuisine = form.cuisine.data
                         restaurant.operating_hours = op_hours['week_hours']
                         restaurant.update()
                     else:
